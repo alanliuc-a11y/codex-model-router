@@ -1,0 +1,6 @@
+interface:
+  display_name: "模型路由器"
+  short_description: "为每个 Codex 任务推荐合适的模型与推理强度，不自动切换"
+  default_prompt: "Use $model-router to recommend the most efficient model and reasoning effort for this task without executing it or changing speed settings."
+policy:
+  allow_implicit_invocation: true
