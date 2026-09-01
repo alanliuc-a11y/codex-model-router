@@ -39,8 +39,15 @@ For routing-only requests, return exactly these three short lines:
 
 `原因：<one concise task-specific reason>`
 
-`操作：<在模型选择器中选择模型与对应推理强度，然后发送“执行”>`
+`操作：<在模型选择器中选择模型与对应推理强度，然后发送确认词>`
+
+Use the user's language for the confirmation word:
+
+- For a Chinese request, say `执行` (or `按推荐执行`).
+- For an English request, say `go`.
+
+Treat `go` as a confirmation only when the entire user message is exactly `go`, ignoring letter case and surrounding whitespace, and only when it directly follows a routing recommendation. Do not treat `go ahead` or a sentence containing `go` as the confirmation token.
 
 Do not mention speed in routing output. If the Codex UI uses localized labels, use the exact label shown for the selected reasoning effort. Do not label `Standard` as a reasoning effort: it may refer to speed or execution mode depending on the UI.
 
-For a normal substantive task, route first and do not execute it. Do not use tools, browse, edit files, plan, delegate, or provide a substantive answer before the user confirms with `执行` or `按推荐执行` after selecting a model. On that confirmation, execute the previously proposed task without re-routing or pausing again. Do not claim that the selected model was verified.
+For a normal substantive task, route first and do not execute it. Do not use tools, browse, edit files, plan, delegate, or provide a substantive answer before the user confirms with the language-appropriate confirmation word after selecting a model. On that confirmation, execute the previously proposed task without re-routing or pausing again. Do not claim that the selected model was verified.

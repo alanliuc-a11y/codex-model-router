@@ -54,6 +54,8 @@ $model-router Review this database migration plan. Recommend the lowest suitable
 
 The skill returns a model, a reasoning-effort recommendation, and a short reason. Choose that combination in Codex, then start the actual task.
 
+For English requests, the confirmation word is `go`. Send it as a standalone message after choosing the model. `go ahead` or a longer sentence is not treated as the confirmation token.
+
 ## Why use it?
 
 It is easy to leave a powerful model and a high reasoning setting on for every task. That is often reasonable for difficult work, but wasteful for routine work such as a focused edit, a predictable check, or a repeatable transformation.
