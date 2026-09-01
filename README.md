@@ -6,6 +6,16 @@
 
 If you want to save Codex tokens, reduce unnecessary Codex token usage, or make your Codex workflow more efficient, this skill gives you one practical decision point before work begins.
 
+## Fastest installation: ask Codex to install it
+
+In Codex, copy and send this entire message. Do **not** send only the bare repository URL.
+
+```text
+Use the Skill Installer to install the Codex skill from GitHub repository alanliuc-a11y/codex-model-router, using path . and the skill name model-router. After installation, enable its global routing workflow by running the included script for my operating system. Preserve my existing AGENTS.md instructions and tell me when it is ready.
+```
+
+This repository's skill is at its root, so the installer needs the path `.`. Once the global workflow is enabled, you can write future tasks normally without adding `$model-router` each time.
+
 ## Step 1 — Install
 
 Clone this repository into your Codex skills directory, using `model-router` as the folder name:

@@ -6,6 +6,16 @@
 
 如果你想节省 Token、节省 Codex Token、降低 Codex Token 消耗，或提高 Codex 的使用效率，这个 skill 会在执行前给出一个可操作的选择建议。
 
+## 最方便的安装方式：直接让 Codex 安装
+
+在 Codex 中复制并发送下面**整段话**。不要只发送一个裸 GitHub 链接。
+
+```text
+请使用 Skill Installer 从 GitHub 仓库 alanliuc-a11y/codex-model-router 安装 Codex skill；仓库内路径使用 .，skill 名称使用 model-router。安装完成后，请运行当前操作系统对应的附带脚本，启用它的全局路由功能；保留我现有的 AGENTS.md 规则，并在准备好后告诉我。
+```
+
+这个仓库把 skill 放在根目录，因此安装器需要路径 `.`。全局路由启用完成后，以后的任务都可以像平时一样直接输入，不需要每次加 `$model-router`。
+
 ## 第一步：安装
 
 把本仓库克隆到 Codex skills 目录中，文件夹名称使用 `model-router`：
