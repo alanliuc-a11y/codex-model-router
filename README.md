@@ -6,6 +6,28 @@
 
 If you want to save Codex tokens, reduce unnecessary Codex token usage, or make your Codex workflow more efficient, this skill gives you one practical decision point before work begins.
 
+## One-time global mode (recommended)
+
+After installation, Codex can discover this skill automatically when a request is about choosing a model or reasoning effort. Automatic discovery is helpful, but it is not a promise that every ordinary task will be routed first.
+
+To make routing the default for **every substantive task**, enable the included global workflow once. After this one-time setup, users write their task normally; `$model-router` is only an explicit fallback when they want to force a routing-only turn.
+
+Review `GLOBAL-ROUTING.md`, then run one command from the installed `model-router` folder:
+
+**Windows PowerShell**
+
+```powershell
+.\scripts\global-routing.ps1
+```
+
+**macOS / Linux**
+
+```sh
+./scripts/global-routing.sh
+```
+
+The scripts add or update only a marked Model Router section in the user-level `AGENTS.md`; they preserve existing instructions and create a backup before changing that file. Preview without changing anything with `-Preview` (PowerShell) or `--preview` (macOS/Linux). Remove the managed section with `-Disable` or `--disable`.
+
 ## Why use it?
 
 It is easy to leave a powerful model and a high reasoning setting on for every task. That is often reasonable for difficult work, but wasteful for routine work such as a focused edit, a predictable check, or a repeatable transformation.
@@ -54,7 +76,9 @@ Restart Codex or start a new task so the skill can be discovered.
 
 ## Use it
 
-Ask for a recommendation before asking Codex to do the work:
+With global mode enabled, write the task normally. Codex should recommend the model and reasoning effort before it starts work.
+
+Use `$model-router` only when you want to force a routing-only turn, for example:
 
 ```text
 $model-router Review this database migration plan. Recommend the lowest suitable model and reasoning effort. Do not execute the review.
@@ -76,6 +100,8 @@ Codex token saving · save Codex tokens · reduce Codex token usage · token-eff
 
 - `SKILL.md` — routing instructions loaded by Codex.
 - `agents/openai.yaml` — skill display metadata and automatic-discovery policy.
+- `GLOBAL-ROUTING.md` — the small, managed user-level instruction block for global mode.
+- `scripts/global-routing.ps1` and `scripts/global-routing.sh` — one-time enable, preview, update, and disable commands.
 - `README.md` and `README.zh-CN.md` — English-first, bilingual documentation.
 
 ## Validate the skill

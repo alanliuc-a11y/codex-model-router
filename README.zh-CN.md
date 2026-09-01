@@ -6,6 +6,28 @@
 
 如果你想节省 Token、节省 Codex Token、降低 Codex Token 消耗，或提高 Codex 的使用效率，这个 skill 会在执行前给出一个可操作的选择建议。
 
+## 一次启用全局模式（推荐）
+
+安装后，Codex 可以在“选择模型或推理强度”相关的请求中自动发现这个 skill。但“可以自动发现”不等于“每个普通任务都必定先路由”。
+
+如果希望**每个实质任务**默认先推荐模型和推理强度，请一次性启用附带的全局工作流。之后用户直接写任务即可；`$model-router` 只在需要强制进入“仅推荐、不执行”时作为兜底使用。
+
+先阅读 `GLOBAL-ROUTING.md`，再在已安装的 `model-router` 目录中执行一次：
+
+**Windows PowerShell**
+
+```powershell
+.\scripts\global-routing.ps1
+```
+
+**macOS / Linux**
+
+```sh
+./scripts/global-routing.sh
+```
+
+脚本只会添加或更新用户级 `AGENTS.md` 中带标记的 Model Router 区块：保留原有规则，并在修改前创建备份。PowerShell 使用 `-Preview`、macOS/Linux 使用 `--preview` 可先预览；分别用 `-Disable`、`--disable` 删除受管理的区块。
+
 ## 它为什么有用？
 
 很多人会一直使用最强模型和最高推理强度。面对困难任务，这样做可能合理；但对一次明确的修改、规则固定的检查或可重复的转换来说，往往没有必要。
@@ -54,7 +76,9 @@
 
 ## 怎么用
 
-先请求建议，再让 Codex 执行实际工作：
+启用全局模式后，直接描述任务即可。Codex 应先给出模型和推理强度建议，再开始工作。
+
+只有在希望强制进入“只推荐、不执行”时，才显式加 `$model-router`，例如：
 
 ```text
 $model-router 审核这份数据库迁移方案，推荐足够且最节省的模型和推理强度；不要执行审核。
@@ -76,6 +100,8 @@ skill 会返回模型、推理强度和简短原因。请先在 Codex 中选好�
 
 - `SKILL.md`：由 Codex 加载的路由规则。
 - `agents/openai.yaml`：skill 的展示信息与自动发现策略。
+- `GLOBAL-ROUTING.md`：用于全局模式的小型、受管理用户级规则区块。
+- `scripts/global-routing.ps1`、`scripts/global-routing.sh`：一次性启用、预览、更新和禁用命令。
 - `README.md`、`README.zh-CN.md`：英文在前、中文配套的说明文档。
 
 ## 校验 skill
