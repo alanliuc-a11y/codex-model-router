@@ -1,6 +1,6 @@
 # Save Codex tokens with better model choices
 
-**English** | [简体中文](README.zh-CN.md)
+**English** | [Chinese documentation](README.zh-CN.md)
 
 **Model Router** is a small Codex skill that helps you choose a capable model and reasoning effort *before* you start a task. Its goal is simple: avoid paying for more model capability or reasoning than the task needs, while keeping enough quality for the job.
 
