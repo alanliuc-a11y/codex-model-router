@@ -6,13 +6,17 @@
 
 如果你想节省 Token、节省 Codex Token、降低 Codex Token 消耗，或提高 Codex 的使用效率，这个 skill 会在执行前给出一个可操作的选择建议。
 
-## 一次启用全局模式（推荐）
+## 第一步：安装
 
-安装后，Codex 可以在“选择模型或推理强度”相关的请求中自动发现这个 skill。但“可以自动发现”不等于“每个普通任务都必定先路由”。
+把本仓库克隆到 Codex skills 目录中，文件夹名称使用 `model-router`：
 
-如果希望**每个实质任务**默认先推荐模型和推理强度，请一次性启用附带的全局工作流。之后用户直接写任务即可；`$model-router` 只在需要强制进入“仅推荐、不执行”时作为兜底使用。
+```text
+<CODEX_HOME>/skills/model-router/
+├── SKILL.md
+└── agents/openai.yaml
+```
 
-先阅读 `GLOBAL-ROUTING.md`，再在已安装的 `model-router` 目录中执行一次：
+重启 Codex 或新建一个任务，让应用重新发现该 skill。然后在已安装的 `model-router` 目录中运行一次全局启用命令：
 
 **Windows PowerShell**
 
@@ -26,7 +30,19 @@
 ./scripts/global-routing.sh
 ```
 
-脚本只会添加或更新用户级 `AGENTS.md` 中带标记的 Model Router 区块：保留原有规则，并在修改前创建备份。PowerShell 使用 `-Preview`、macOS/Linux 使用 `--preview` 可先预览；分别用 `-Disable`、`--disable` 删除受管理的区块。
+这一次命令就是全局设置。请注意：这**不是**在聊天里第一次加一次 `$model-router` 就永久生效；前缀本身不是开关。脚本只会添加或更新用户级 `AGENTS.md` 中带标记的 Model Router 区块：保留原有规则，并在修改前创建备份。PowerShell 使用 `-Preview`、macOS/Linux 使用 `--preview` 可先预览；分别用 `-Disable`、`--disable` 删除受管理的区块。
+
+## 第二步：使用
+
+完成第一步后，每次对话都像平时一样直接输入任务即可。**不需要**在每次对话前加 `$model-router`。Codex 应先给出模型和推理强度建议，再开始工作。
+
+只有在希望强制进入“只推荐、不执行”时，才显式加 `$model-router` 作为兜底，例如：
+
+```text
+$model-router 审核这份数据库迁移方案，推荐足够且最节省的模型和推理强度；不要执行审核。
+```
+
+skill 会返回模型、推理强度和简短原因。请先在 Codex 中选好对应组合，再开始实际任务。
 
 ## 它为什么有用？
 
@@ -61,30 +77,6 @@
 4. 是否出现返工、失败或必须升级配置的情况。
 
 只有当质量检查也通过时，Token 更低才算真正的效率提升。OpenAI 的模型指南同样建议使用有代表性的任务比较，并尝试降低一档推理强度，而不是假定最高设置总是最佳取舍。[OpenAI 模型指南](https://developers.openai.com/api/docs/guides/latest-model)
-
-## 安装
-
-把本仓库克隆到 Codex skills 目录中，文件夹名称使用 `model-router`：
-
-```text
-<CODEX_HOME>/skills/model-router/
-├── SKILL.md
-└── agents/openai.yaml
-```
-
-重启 Codex 或新建一个任务，让应用重新发现该 skill。
-
-## 怎么用
-
-启用全局模式后，直接描述任务即可。Codex 应先给出模型和推理强度建议，再开始工作。
-
-只有在希望强制进入“只推荐、不执行”时，才显式加 `$model-router`，例如：
-
-```text
-$model-router 审核这份数据库迁移方案，推荐足够且最节省的模型和推理强度；不要执行审核。
-```
-
-skill 会返回模型、推理强度和简短原因。请先在 Codex 中选好对应组合，再开始实际任务。
 
 ## 重要说明
 

@@ -6,13 +6,17 @@
 
 If you want to save Codex tokens, reduce unnecessary Codex token usage, or make your Codex workflow more efficient, this skill gives you one practical decision point before work begins.
 
-## One-time global mode (recommended)
+## Step 1 — Install
 
-After installation, Codex can discover this skill automatically when a request is about choosing a model or reasoning effort. Automatic discovery is helpful, but it is not a promise that every ordinary task will be routed first.
+Clone this repository into your Codex skills directory, using `model-router` as the folder name:
 
-To make routing the default for **every substantive task**, enable the included global workflow once. After this one-time setup, users write their task normally; `$model-router` is only an explicit fallback when they want to force a routing-only turn.
+```text
+<CODEX_HOME>/skills/model-router/
+├── SKILL.md
+└── agents/openai.yaml
+```
 
-Review `GLOBAL-ROUTING.md`, then run one command from the installed `model-router` folder:
+Restart Codex or start a new task so the skill can be discovered. Then enable global routing once by running one command from the installed `model-router` folder:
 
 **Windows PowerShell**
 
@@ -26,7 +30,19 @@ Review `GLOBAL-ROUTING.md`, then run one command from the installed `model-route
 ./scripts/global-routing.sh
 ```
 
-The scripts add or update only a marked Model Router section in the user-level `AGENTS.md`; they preserve existing instructions and create a backup before changing that file. Preview without changing anything with `-Preview` (PowerShell) or `--preview` (macOS/Linux). Remove the managed section with `-Disable` or `--disable`.
+This first-time command is the global setup. It is **not** the same as typing `$model-router` once in a chat: the prefix is not a permanent switch. The scripts add or update only a marked Model Router section in the user-level `AGENTS.md`; they preserve existing instructions and create a backup before changing that file. Preview without changing anything with `-Preview` (PowerShell) or `--preview` (macOS/Linux). Remove the managed section with `-Disable` or `--disable`.
+
+## Step 2 — Use it
+
+After Step 1 is complete, write every new task normally, just as you usually do. You do **not** need to add `$model-router` at the beginning of each conversation. Codex should recommend the model and reasoning effort before it starts work.
+
+Use `$model-router` only as an explicit fallback when you want to force a routing-only turn, for example:
+
+```text
+$model-router Review this database migration plan. Recommend the lowest suitable model and reasoning effort. Do not execute the review.
+```
+
+The skill returns a model, a reasoning-effort recommendation, and a short reason. Choose that combination in Codex, then start the actual task.
 
 ## Why use it?
 
@@ -61,30 +77,6 @@ To measure your own result, pick a representative set of tasks and compare your 
 4. Rework or failures that force escalation.
 
 Count a lower-token route as an improvement only when the work still passes your required quality checks. OpenAI's model guidance likewise recommends comparing representative tasks and testing one lower reasoning setting rather than assuming the highest setting is always the best trade-off. [OpenAI model guidance](https://developers.openai.com/api/docs/guides/latest-model)
-
-## Install
-
-Clone this repository into your Codex skills directory, using `model-router` as the folder name:
-
-```text
-<CODEX_HOME>/skills/model-router/
-├── SKILL.md
-└── agents/openai.yaml
-```
-
-Restart Codex or start a new task so the skill can be discovered.
-
-## Use it
-
-With global mode enabled, write the task normally. Codex should recommend the model and reasoning effort before it starts work.
-
-Use `$model-router` only when you want to force a routing-only turn, for example:
-
-```text
-$model-router Review this database migration plan. Recommend the lowest suitable model and reasoning effort. Do not execute the review.
-```
-
-The skill returns a model, a reasoning-effort recommendation, and a short reason. Choose that combination in Codex, then start the actual task.
 
 ## Important details
 
