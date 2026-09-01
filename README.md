@@ -1,22 +1,48 @@
-# Model Router for Codex
+# Save Codex tokens with better model choices
 
-Model Router is a compact Codex skill that recommends the least expensive GPT-5.6 model and reasoning effort likely to complete a proposed task correctly. It is designed for people who want a repeatable recommendation before starting work, without claiming that Codex can change a running task's root model automatically.
+**English** | [简体中文](README.zh-CN.md)
 
-[中文说明](README.zh-CN.md)
+**Model Router** is a small Codex skill that helps you choose a capable model and reasoning effort *before* you start a task. Its goal is simple: avoid paying for more model capability or reasoning than the task needs, while keeping enough quality for the job.
 
-## What it does
+If you want to save Codex tokens, reduce unnecessary Codex token usage, or make your Codex workflow more efficient, this skill gives you one practical decision point before work begins.
 
-- Routes narrow, repeatable work toward GPT-5.6 Luna.
-- Uses GPT-5.6 Terra as the normal production default.
-- Escalates to GPT-5.6 Sol only for ambiguity, high stakes, difficult judgment, or complex cross-system work.
-- Recommends reasoning effort separately from the model: `Low`, `Medium`, `High`, `XHigh`, or `Max`.
-- Reserves Codex Ultra for large tasks with meaningful independent workstreams.
+## Why use it?
 
-It does not alter speed settings, create subagents merely to simulate a model switch, or claim to know which model is currently selected in the interface.
+It is easy to leave a powerful model and a high reasoning setting on for every task. That is often reasonable for difficult work, but wasteful for routine work such as a focused edit, a predictable check, or a repeatable transformation.
+
+Model Router recommends the lowest suitable starting point:
+
+- **GPT-5.6 Luna** for narrow, repeatable, and easy-to-check work.
+- **GPT-5.6 Terra** for ordinary production work and well-scoped multi-step tasks.
+- **GPT-5.6 Sol** when the work is ambiguous, high-risk, difficult to verify, or needs deeper judgment.
+
+It recommends the reasoning effort separately, so you can avoid treating every task as a highest-effort task.
+
+## What it does not do
+
+- It does **not** automatically switch the model of a task that is already running.
+- It does **not** change your speed setting.
+- It does **not** claim to know which option is currently selected in your Codex interface.
+- It does **not** promise a fixed saving such as “60% fewer tokens.”
+
+A fixed percentage would be misleading: your saving depends on the work you do, the model and effort you used before, the length of the conversation, and the quality bar you need to meet.
+
+## How efficiency is measured
+
+The skill's efficiency claim is limited and testable: it helps you avoid using a larger model or higher reasoning effort when a smaller setting still meets the task's quality bar.
+
+To measure your own result, pick a representative set of tasks and compare your normal setting with the recommended setting. Track:
+
+1. Whether the task succeeds and the output is complete.
+2. Total token usage and cost.
+3. Time to a usable result.
+4. Rework or failures that force escalation.
+
+Count a lower-token route as an improvement only when the work still passes your required quality checks. OpenAI's model guidance likewise recommends comparing representative tasks and testing one lower reasoning setting rather than assuming the highest setting is always the best trade-off. [OpenAI model guidance](https://developers.openai.com/api/docs/guides/latest-model)
 
 ## Install
 
-Clone this repository into your Codex skills directory with the folder name `model-router`:
+Clone this repository into your Codex skills directory, using `model-router` as the folder name:
 
 ```text
 <CODEX_HOME>/skills/model-router/
@@ -24,36 +50,40 @@ Clone this repository into your Codex skills directory with the folder name `mod
 └── agents/openai.yaml
 ```
 
-Restart Codex or begin a new task so it discovers the installed skill. Invoke it explicitly with `$model-router`, or let Codex select it when the request is about model or reasoning-effort choice.
+Restart Codex or start a new task so the skill can be discovered.
 
-## How to use it
+## Use it
 
-Ask a routing-only question, for example:
+Ask for a recommendation before asking Codex to do the work:
 
 ```text
-$model-router Review this migration plan and recommend the cheapest suitable model. Do not execute it.
+$model-router Review this database migration plan. Recommend the lowest suitable model and reasoning effort. Do not execute the review.
 ```
 
-The skill returns a model recommendation, a reasoning-effort recommendation, and a short reason. Select the recommendation in Codex before starting the actual task.
+The skill returns a model, a reasoning-effort recommendation, and a short reason. Choose that combination in Codex, then start the actual task.
 
-## Important behavior
+## Important details
 
-- A task's root model is chosen before that task starts. A skill can recommend a model but cannot switch the current task automatically.
-- `Standard` is not used as a reasoning-effort recommendation. Use the exact label shown by the current Codex UI for the selected effort; `Standard` may describe speed or execution mode instead.
-- The routing rubric is guidance, not a guarantee. Escalate when failure would be expensive or difficult to detect.
+- The root model for a task is chosen before the task begins. A skill can recommend a choice; it cannot change the root model mid-task.
+- `Standard` is not a reasoning-effort recommendation. Use the exact reasoning label available in your current Codex model picker; `Standard` may describe speed or execution mode instead.
+- The router is decision support, not a guarantee. Use a stronger model or higher effort when an error would be costly or hard to detect.
+
+## Search keywords
+
+Codex token saving · save Codex tokens · reduce Codex token usage · token-efficient Codex workflow · improve Codex efficiency · Codex model selection · Codex reasoning effort · GPT-5.6 Luna · GPT-5.6 Terra · GPT-5.6 Sol
 
 ## Repository contents
 
-- `SKILL.md` — the routing instructions loaded by Codex.
-- `agents/openai.yaml` — display metadata and automatic-discovery policy.
-- `README.md` and `README.zh-CN.md` — English and Chinese usage documentation.
+- `SKILL.md` — routing instructions loaded by Codex.
+- `agents/openai.yaml` — skill display metadata and automatic-discovery policy.
+- `README.md` and `README.zh-CN.md` — English-first, bilingual documentation.
 
-## Validation
+## Validate the skill
 
-From a Codex installation that includes the bundled Skill Creator tools:
+From an environment with the bundled Skill Creator tools:
 
 ```text
 python quick_validate.py <path-to-model-router>
 ```
 
-The validator checks skill structure and frontmatter. It does not prove the recommendation is optimal for every task, so test it against representative work.
+This checks the skill structure and frontmatter. It does not prove that every recommendation is optimal; validate the routing with representative tasks before relying on it for important work.
