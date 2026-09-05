@@ -2,7 +2,7 @@
 
 **English** | [Chinese documentation](README.zh-CN.md)
 
-**Model Router** is a small Codex skill that helps you choose a capable model and reasoning effort *before* you start a task. Its goal is simple: avoid paying for more model capability or reasoning than the task needs, while keeping enough quality for the job.
+**Model Router** is a small Codex skill that helps you choose a capable model and reasoning effort *before* you start a task. It routes across GPT-5.6 Luna, Terra, and Sol, and can escalate the hardest end-to-end work to GPT-6 Astra. Its goal is simple: avoid paying for more model capability or reasoning than the task needs, while keeping enough quality for the job.
 
 If you want to save Codex tokens, reduce unnecessary Codex token usage, or make your Codex workflow more efficient, this skill gives you one practical decision point before work begins.
 
@@ -65,8 +65,9 @@ Model Router recommends the lowest suitable starting point:
 - **GPT-5.6 Luna** for narrow, repeatable, and easy-to-check work.
 - **GPT-5.6 Terra** for ordinary production work and well-scoped multi-step tasks.
 - **GPT-5.6 Sol** when the work is ambiguous, high-risk, difficult to verify, or needs deeper judgment.
+- **GPT-6 Astra** only for the hardest end-to-end work: demanding combinations of coding, browsing, computer use, research, and professional work, especially when failure is costly or difficult to detect.
 
-It recommends the reasoning effort separately, so you can avoid treating every task as a highest-effort task.
+It recommends the reasoning effort separately, so you can avoid treating every task as a highest-effort task. Astra is not the new default: the router continues to prefer Luna, Terra, or Sol whenever they are likely to meet the quality bar.
 
 ## What it does not do
 
@@ -94,11 +95,15 @@ Count a lower-token route as an improvement only when the work still passes your
 
 - The root model for a task is chosen before the task begins. A skill can recommend a choice; it cannot change the root model mid-task.
 - `Standard` is not a reasoning-effort recommendation. Use the exact reasoning label available in your current Codex model picker; `Standard` may describe speed or execution mode instead.
+- OpenAI's API documentation lists GPT-6 Astra reasoning efforts as `Low`, `Medium`, `High`, `XHigh`, and `Max`. If a Codex interface exposes `Ultra`, this router treats it as a Codex multi-agent execution mode rather than a portable API reasoning-effort value.
+- Astra availability can vary by account and rollout. If it is not present in the current model picker, use the strongest suitable available alternative.
 - The router is decision support, not a guarantee. Use a stronger model or higher effort when an error would be costly or hard to detect.
+
+Official references: [GPT-6 Astra model page](https://developers.openai.com/api/docs/models/gpt-6-astra) and [OpenAI model guidance](https://developers.openai.com/api/docs/guides/latest-model).
 
 ## Search keywords
 
-Codex token saving · save Codex tokens · reduce Codex token usage · token-efficient Codex workflow · improve Codex efficiency · Codex model selection · Codex reasoning effort · GPT-5.6 Luna · GPT-5.6 Terra · GPT-5.6 Sol
+Codex token saving · save Codex tokens · reduce Codex token usage · token-efficient Codex workflow · improve Codex efficiency · Codex model selection · Codex reasoning effort · GPT-5.6 Luna · GPT-5.6 Terra · GPT-5.6 Sol · GPT-6 Astra · Astra model router
 
 ## Repository contents
 
