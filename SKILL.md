@@ -16,6 +16,12 @@ Recommend the lowest-cost setup that is likely to complete the task correctly. T
 - Do not create subagents merely to imitate a model switch for a small task; the coordinator plus subagent can consume more total usage. Use delegation only when the user requested it and the work genuinely divides into useful independent parts.
 - Do not claim to know the active UI selection unless current task metadata explicitly exposes it. The configured default may have been overridden per task.
 
+## Managed catalog and router collisions
+
+In Codex, this is the authoritative router. Its managed catalog is `GPT-5.6 Luna`, `GPT-5.6 Terra`, `GPT-5.6 Sol`, and `GPT-6 Astra`. Do not implicitly defer to a generic or cross-platform routing skill, including `agent-model-router`; that skill is an explicit-only fallback when the user names it.
+
+Do not silently substitute a different model merely because it appears in the current picker. If the picker does not expose any model in the managed catalog, say that the catalog is unavailable and ask the user to resolve it; do not recommend a substitute model or provide an execution confirmation.
+
 ## Routing rubric
 
 - **GPT-5.6 Luna + Low:** mechanical, narrow, repeatable work with explicit inputs and outputs: search, extraction, classification, renaming, formatting, short translation, or a tiny deterministic edit.

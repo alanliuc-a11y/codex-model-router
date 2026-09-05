@@ -95,6 +95,8 @@ Count a lower-token route as an improvement only when the work still passes your
 
 - The root model for a task is chosen before the task begins. A skill can recommend a choice; it cannot change the root model mid-task.
 - `Standard` is not a reasoning-effort recommendation. Use the exact reasoning label available in your current Codex model picker; `Standard` may describe speed or execution mode instead.
+- In Codex, this router manages only GPT-5.6 Luna, Terra, Sol, and GPT-6 Astra. If you also install a generic cross-platform model router, configure it for explicit-only use in Codex; otherwise its "lowest available model" policy can conflict with this skill's managed catalog.
+- If the model picker does not contain a managed model, the router should report that mismatch instead of silently replacing it with another option such as GPT-5.4 Mini.
 - OpenAI's API documentation lists GPT-6 Astra reasoning efforts as `Low`, `Medium`, `High`, `XHigh`, and `Max`. If a Codex interface exposes `Ultra`, this router treats it as a Codex multi-agent execution mode rather than a portable API reasoning-effort value.
 - Astra availability can vary by account and rollout. If it is not present in the current model picker, use the strongest suitable available alternative.
 - The router is decision support, not a guarantee. Use a stronger model or higher effort when an error would be costly or hard to detect.
