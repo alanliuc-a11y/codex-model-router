@@ -56,6 +56,26 @@ The skill returns a model, a reasoning-effort recommendation, and a short reason
 
 For English requests, the confirmation word is `go`. Send it as a standalone message after choosing the model. `go ahead` or a longer sentence is not treated as the confirmation token.
 
+## See the two-step workflow
+
+These are authentic Codex captures, presented on a consistent tutorial card. Model Router does not change the active task for you: first select the recommended setting in the picker, then type `go`.
+
+### A light, easy-to-check task
+
+![Step 1: select GPT-5.6 Luna with Light reasoning in the Codex model picker](docs/screenshots/en-01-switch-luna-light.png)
+
+![Step 2: type go after selecting GPT-5.6 Luna with Light reasoning](docs/screenshots/en-02-confirm-go.png)
+
+### A routine review and a hard end-to-end workflow
+
+![A launch-plan review routed to GPT-5.6 Sol with High reasoning before confirmation](docs/screenshots/en-03-sol-confirm-go.png)
+
+![A hard cross-system payment review routed to GPT-6 Astra with Ultra reasoning; the picker must be changed before confirmation](docs/screenshots/en-04-astra-switch.png)
+
+![Type go after selecting GPT-6 Astra with Ultra reasoning](docs/screenshots/en-05-astra-confirm-go.png)
+
+The screenshots illustrate the decision and confirmation flow, not an automatic model switch. Model availability and picker labels can vary by account and Codex rollout.
+
 ## Why use it?
 
 It is easy to leave a powerful model and a high reasoning setting on for every task. That is often reasonable for difficult work, but wasteful for routine work such as a focused edit, a predictable check, or a repeatable transformation.
