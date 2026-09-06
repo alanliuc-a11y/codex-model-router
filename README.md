@@ -2,6 +2,8 @@
 
 **English** | [Chinese documentation](README.zh-CN.md)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-7c3aed.svg)](LICENSE) [![Codex skill](https://img.shields.io/badge/Codex-skill-22c55e.svg)](SKILL.md) [![Latest release](https://img.shields.io/github/v/release/alanliuc-a11y/codex-model-router?display_name=tag&color=06b6d4)](https://github.com/alanliuc-a11y/codex-model-router/releases)
+
 **Model Router** is a small Codex skill that helps you choose a capable model and reasoning effort *before* you start a task. It routes across GPT-5.6 Luna, Terra, and Sol, and can escalate the hardest end-to-end work to GPT-6 Astra. Its goal is simple: avoid paying for more model capability or reasoning than the task needs, while keeping enough quality for the job.
 
 If you want to save Codex tokens, reduce unnecessary Codex token usage, or make your Codex workflow more efficient, this skill gives you one practical decision point before work begins.
@@ -134,6 +136,12 @@ Codex token saving · save Codex tokens · reduce Codex token usage · token-eff
 - `GLOBAL-ROUTING.md` — the small, managed user-level instruction block for global mode.
 - `scripts/global-routing.ps1` and `scripts/global-routing.sh` — one-time enable, preview, update, and disable commands.
 - `README.md` and `README.zh-CN.md` — English-first, bilingual documentation.
+- `LICENSE` — the MIT license for reuse and distribution.
+- `CONTRIBUTING.md` — safe, focused ways to report issues and contribute.
+
+## Releases and contributing
+
+See [Releases](https://github.com/alanliuc-a11y/codex-model-router/releases) for stable versions and [CONTRIBUTING.md](CONTRIBUTING.md) for installation reports, routing examples, translation fixes, and focused pull requests.
 
 ## Validate the skill
 

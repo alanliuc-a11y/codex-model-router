@@ -2,6 +2,8 @@
 
 [英文说明](README.md) | **中文说明**
 
+[![许可证：MIT](https://img.shields.io/badge/License-MIT-7c3aed.svg)](LICENSE) [![Codex 技能](https://img.shields.io/badge/Codex-skill-22c55e.svg)](SKILL.md) [![最新版本](https://img.shields.io/github/v/release/alanliuc-a11y/codex-model-router?display_name=tag&color=06b6d4)](https://github.com/alanliuc-a11y/codex-model-router/releases)
+
 **模型路由器**是一个小型 Codex 技能。它会在你开始任务**之前**，从 GPT-5.6 Luna、Terra、Sol 和 GPT-6 Astra 中建议一个足够胜任的模型，并单独推荐推理强度。目标很直接：在质量够用的前提下，避免为不需要的模型能力或推理消耗付费。
 
 如果你想节省令牌、节省 Codex 令牌、降低 Codex 令牌消耗，或提高 Codex 的使用效率，这个技能会在执行前给出一个可操作的选择建议。
@@ -132,6 +134,12 @@ $model-router 审核这份数据库迁移方案，推荐足够且最节省的模
 - `GLOBAL-ROUTING.md`：用于全局模式的小型、受管理用户级规则区块。
 - `scripts/global-routing.ps1`、`scripts/global-routing.sh`：一次性启用、预览、更新和禁用命令。
 - `README.md`、`README.zh-CN.md`：英文在前、中文配套的说明文档。
+- `LICENSE`：允许复用和分发的 MIT 许可证。
+- `CONTRIBUTING.md`：提交问题和贡献的安全指引。
+
+## 版本与贡献
+
+稳定版本请见 [Releases](https://github.com/alanliuc-a11y/codex-model-router/releases)；安装问题、路由案例、翻译修正和聚焦的 Pull Request，请参阅 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 ## 校验 skill
 
