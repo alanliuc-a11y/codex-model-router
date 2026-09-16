@@ -1,6 +1,6 @@
 ---
 name: model-router
-description: Recommend a cost-efficient Codex model and reasoning effort for a proposed task, including GPT-6 Astra when the hardest end-to-end work genuinely needs it. Use for model selection, reasoning-level selection, or task routing; it recommends but never switches the already-running root model.
+description: Recommend a cost-efficient Codex model and reasoning effort for a proposed task, including GPT-6 Astra when broad, integrated end-to-end work benefits from its coordination strength. Use for model selection, reasoning-level selection, or task routing; it recommends but never switches the already-running root model.
 metadata:
   short-description: Recommend an efficient Codex model and effort
 ---
@@ -28,15 +28,25 @@ Do not silently substitute a different model merely because it appears in the cu
 - **GPT-5.6 Luna + Medium:** clear bounded transformations or focused coding where success is easy to verify and failure is cheap.
 - **GPT-5.6 Terra + Medium:** default for ordinary production work: document analysis, reporting, scoped coding, known bug fixes, routine QA, and tasks needing sound judgment or several tools.
 - **GPT-5.6 Terra + High:** well-scoped but multi-step work across several files, sources, or tools, when planning and verification matter more than ambiguity.
-- **GPT-5.6 Sol + Medium or High:** ambiguous, open-ended, difficult, high-value, or cross-system work; unknown-cause debugging; architecture; deep research; polished final deliverables; or decisions where weak judgment would be costly.
+- **GPT-5.6 Sol + Medium or High:** ambiguous, open-ended, difficult, or high-value work that is concentrated in one primary domain or a small number of systems: unknown-cause debugging, architecture, deep research, polished deliverables, or decisions where weak judgment would be costly.
 - **GPT-5.6 Sol + XHigh:** use only when High has a demonstrated risk of missing important issues, or for exceptionally difficult quality-first analysis. Prefer High as the initial attempt.
-- **GPT-6 Astra + Low or Medium:** the hardest well-specified end-to-end workflows that combine several demanding activities such as coding, browsing, computer use, research, and professional document work. Start with Low only when the task is explicit and verification is strong; otherwise start with Medium.
-- **GPT-6 Astra + High:** exceptionally difficult or high-stakes end-to-end work with several systems, weak validation, or failure modes that are expensive and hard to detect.
+- **GPT-6 Astra + Low or Medium:** broad, integrated end-to-end workflows that meet at least two Astra signals below. Start with Low only when the task is explicit and verification is strong; otherwise start with Medium.
+- **GPT-6 Astra + High:** Astra-eligible work with high stakes, weak validation, conflicting evidence, or failure modes that are expensive and hard to detect.
 - **GPT-6 Astra + XHigh:** reserve for boundary-pushing analysis or when Astra High has a demonstrated risk of missing critical issues.
 - **Max:** reserve for the hardest single-agent problem when depth matters more than latency or usage. Astra supports Max; prefer a lower effort first unless failure is unusually costly.
 - **Ultra:** reserve for a large task that can be split into meaningful independent workstreams. Treat it as a Codex multi-agent execution mode, not a portable OpenAI API reasoning-effort label. Recommend Astra + Ultra only when the current Codex environment explicitly exposes that combination.
 
-Do not choose Astra merely because it is newer or more capable. Prefer Luna, Terra, or Sol whenever they are likely to meet the quality bar. Escalate to Astra when the task's end-to-end difficulty, breadth, stakes, or validation weakness makes a Sol route materially risky, or after a lower route has failed.
+### Astra selection gate
+
+Recommend Astra as the first choice when the task has at least two of these signals:
+
+- It combines three or more demanding work modes, such as coding, browsing, research, computer use, data analysis, media work, or professional documents.
+- It requires end-to-end ownership across discovery, implementation, verification, and delivery or publication.
+- It spans several systems, apps, repositories, or artifact types whose interactions must remain consistent.
+- It has a long chain of dependent stages where an early mistake can silently propagate into later work.
+- It has weak end-to-end validation, conflicting evidence, costly external effects, or hidden failure modes.
+
+Do not require proof that Sol will fail before choosing Astra. If two Astra signals are present, Astra's integration and coordination advantage is enough to justify the recommendation. A single difficult activity, deep analysis in one domain, or ordinary work across one or two tools should still route to Sol or below. Do not choose Astra merely because it is newer.
 
 Official OpenAI API documentation lists Astra reasoning efforts from `Low` through `Max`; it does not list `Ultra` as an API reasoning effort. Model availability and Codex UI options can vary by account and rollout. If Astra is unavailable in the current model picker, recommend the strongest suitable available alternative instead. See the [GPT-6 Astra model page](https://developers.openai.com/api/docs/models/gpt-6-astra).
 

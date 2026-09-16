@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-7c3aed.svg)](LICENSE) [![Codex skill](https://img.shields.io/badge/Codex-skill-22c55e.svg)](SKILL.md) [![Latest release](https://img.shields.io/github/v/release/alanliuc-a11y/codex-model-router?display_name=tag&color=06b6d4)](https://github.com/alanliuc-a11y/codex-model-router/releases)
 
-**Model Router** is a small Codex skill that helps you choose a capable model and reasoning effort *before* you start a task. It routes across GPT-5.6 Luna, Terra, and Sol, and can escalate the hardest end-to-end work to GPT-6 Astra. Its goal is simple: avoid paying for more model capability or reasoning than the task needs, while keeping enough quality for the job.
+**Model Router** is a small Codex skill that helps you choose a capable model and reasoning effort *before* you start a task. It routes across GPT-5.6 Luna, Terra, and Sol, and uses GPT-6 Astra when broad, integrated end-to-end work benefits from stronger coordination. Its goal is simple: avoid paying for more model capability or reasoning than the task needs, while keeping enough quality for the job.
 
 If you want to save Codex tokens, reduce unnecessary Codex token usage, or make your Codex workflow more efficient, this skill gives you one practical decision point before work begins.
 
@@ -86,10 +86,22 @@ Model Router recommends the lowest suitable starting point:
 
 - **GPT-5.6 Luna** for narrow, repeatable, and easy-to-check work.
 - **GPT-5.6 Terra** for ordinary production work and well-scoped multi-step tasks.
-- **GPT-5.6 Sol** when the work is ambiguous, high-risk, difficult to verify, or needs deeper judgment.
-- **GPT-6 Astra** only for the hardest end-to-end work: demanding combinations of coding, browsing, computer use, research, and professional work, especially when failure is costly or difficult to detect.
+- **GPT-5.6 Sol** when the work is ambiguous, high-risk, difficult to verify, or needs deeper judgment within one primary domain or a small number of systems.
+- **GPT-6 Astra** for broad, integrated end-to-end work that combines multiple demanding activities, systems, stages, or deliverables.
 
 It recommends the reasoning effort separately, so you can avoid treating every task as a highest-effort task. Astra is not the new default: the router continues to prefer Luna, Terra, or Sol whenever they are likely to meet the quality bar.
+
+### When Astra is selected
+
+The router recommends Astra when at least two of these signals are present:
+
+- Three or more demanding work modes, such as coding, browsing, research, computer use, data analysis, media, or professional documents.
+- End-to-end ownership from discovery through implementation, verification, and delivery or publication.
+- Several interacting systems, apps, repositories, or artifact types.
+- A long dependency chain where early mistakes can silently affect later stages.
+- Weak validation, conflicting evidence, costly external effects, or hidden failure modes.
+
+The router no longer waits for proof that Sol will fail. Two Astra signals are enough to justify Astra's integration and coordination advantage. A single hard activity or deep work in one domain still routes to Sol or below.
 
 ## What it does not do
 

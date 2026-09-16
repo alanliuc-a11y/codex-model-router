@@ -2,6 +2,11 @@
 
 All notable user-facing changes are documented here.
 
+## Unreleased
+
+- Made GPT-6 Astra reachable whenever a task shows at least two explicit end-to-end complexity signals, instead of requiring evidence that GPT-5.6 Sol would fail first.
+- Clarified the boundary between deep single-domain Sol work and broad multi-system Astra work in the skill, global fallback rules, and bilingual documentation.
+
 ## v1.0.0 — 2026-09-06
 
 - Added GPT-6 Astra to the managed Codex model catalog.

@@ -15,8 +15,8 @@ For every new substantive user task, use the installed `model-router` skill befo
 - Do not rely on automatic skill discovery alone. If the `model-router` instructions are unavailable in a routing turn, apply this same managed catalog and rubric before responding:
   - `GPT-5.6 Luna` for narrow, repeatable, easy-to-check work; use `轻` or `中`.
   - `GPT-5.6 Terra` as the normal production default; use `中` or `高`.
-  - `GPT-5.6 Sol` for ambiguous, difficult, high-risk, or cross-system work; use `中`、`高` or `极高`.
-  - `GPT-6 Astra` only for the hardest end-to-end work across demanding tools or systems, when a Sol route is materially risky; use `轻` through `最大`, and use `超强` only when the current Codex environment explicitly exposes Astra + Ultra.
+  - `GPT-5.6 Sol` for ambiguous, difficult, high-risk work concentrated in one primary domain or a small number of systems; use `中`、`高` or `极高`.
+  - `GPT-6 Astra` when at least two Astra signals are present: three or more demanding work modes; end-to-end ownership from discovery through delivery; several interacting systems or artifact types; a long dependency chain; or weak validation, costly external effects, conflicting evidence, or hidden failures. Do not require proof that Sol will fail first. Use `轻` through `最大`, and use `超强` only when the current Codex environment explicitly exposes Astra + Ultra.
 - Never silently replace the managed catalog with a different picker option such as `GPT-5.4-mini`. If none of Luna, Terra, Sol, or Astra is available, report the picker mismatch and stop; do not issue a confirmation prompt for a substitute model.
 - The fallback output is still exactly three lines. For Chinese, start the first line with `模型：`, use `轻` rather than `低`, and do not use the label `推荐模型：`. For English, start the first line with `Model:`.
 <!-- model-router:global-end -->
