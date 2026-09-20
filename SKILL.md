@@ -26,6 +26,22 @@ In Codex, this is the authoritative router. Its managed catalog is `GPT-5.6 Luna
 
 Do not silently substitute a different model merely because it appears in the current picker. If the picker does not expose any model in the managed catalog, say that the catalog is unavailable and ask the user to resolve it; do not recommend a substitute model or provide an execution confirmation.
 
+## Evaluate the whole task before choosing a model
+
+Reassess each new substantive request using its full scope and relevant conversation context. Do not reuse the previous recommendation merely because several earlier turns used Luna. A short follow-up can refer to a complex unresolved task. Confirmation words continue the accepted task without another routing gate.
+
+Choose Luna only when ALL of these conditions are met:
+- One narrow outcome with an explicit solution or transformation rule.
+- Inputs and acceptance criteria are already clear; no investigation or design decision is needed.
+- No coupled changes to multiple features, screens, roles, state transitions, or data flows.
+- Verification is direct and local, with cheap recovery if wrong.
+
+Exclude Luna for unknown-cause or repeatedly failing bugs; new features with lifecycle or interaction state; cross-screen consistency; role-dependent publishing, permissions, uploads, persistence, or synchronization; and requests combining several interacting changes. A mock/demo status does not make these interactions trivial. Use Terra Medium/High for scoped implementation, Sol for ambiguity or difficult diagnosis, and evaluate the Astra gate for broad integration work. When evidence is insufficient to establish every Luna condition, start from Terra Medium and assess upward.
+
+Route the whole requested outcome, not just the easiest first step. Splitting implementation into small steps does not justify assigning the entire task to Luna. Apply any allowance-profile override only AFTER this base assessment, exactly once; never remap the resulting Astra Low a second time.
+
+Before responding, check the current task against these conditions and return the prescribed three-line format once, with a task-specific reason. Do not replace the reason with an execution plan.
+
 ## Routing rubric
 
 - **GPT-5.6 Luna + Low:** mechanical, narrow, repeatable work with explicit inputs and outputs: search, extraction, classification, renaming, formatting, short translation, or a tiny deterministic edit.

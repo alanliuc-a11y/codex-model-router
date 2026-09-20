@@ -10,6 +10,8 @@ For every new substantive user task, use the installed `model-router` skill befo
 - Follow the installed skill's output-language contract exactly: a Chinese routing response uses Chinese labels and `执行`; an English routing response uses English labels and `go`. Do not mix the two languages in one routing response, except for the official English model name.
 - Keep model choice and reasoning effort separate. Do not recommend or change speed settings. For Chinese, use the skill's Chinese reasoning labels; for English, use its English reasoning labels. Never use `Standard` as a reasoning-effort label.
 - `$model-router` remains an optional explicit fallback when the user wants to force a routing-only turn.
+- Reassess the complete new request with relevant context; never carry forward Luna just because earlier turns used it. Luna requires ALL: one narrow outcome, explicit solution and acceptance criteria, no investigation/design or coupled feature/state/data-flow changes, and direct local verification with cheap recovery. Unknown or repeated bugs, multi-feature work, role-dependent publishing, uploads, synchronization, lifecycle state, and cross-screen consistency exclude Luna. Start from Terra Medium when these conditions are not established, then assess Sol/Astra as needed. Do not classify only the easiest first step. Apply allowance overrides once after the base route.
+- Return exactly one recommendation in three lines: Chinese uses `模型：…；推理强度：…`, `原因：…`, `操作：…执行…`; English uses `Model: …; reasoning effort: …`, `Reason: …`, `Action: …go…`. Give a task-specific reason, not an execution plan.
 
 ### Conflict prevention and fallback contract
 

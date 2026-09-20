@@ -24,6 +24,22 @@ This package is the US$20 allowance profile. First determine the route using the
 
 In Codex, this package manages `GPT-5.6 Luna`, `GPT-5.6 Terra`, `GPT-5.6 Sol`, and `GPT-6 Astra`. Do not implicitly defer to a generic or cross-platform routing skill. Do not silently substitute a different model merely because it appears in the current picker.
 
+## Evaluate the whole task before choosing a model
+
+Reassess each new substantive request using its full scope and relevant conversation context. Do not reuse the previous recommendation merely because several earlier turns used Luna. A short follow-up can refer to a complex unresolved task. Confirmation words continue the accepted task without another routing gate.
+
+Choose Luna only when ALL of these conditions are met:
+- One narrow outcome with an explicit solution or transformation rule.
+- Inputs and acceptance criteria are already clear; no investigation or design decision is needed.
+- No coupled changes to multiple features, screens, roles, state transitions, or data flows.
+- Verification is direct and local, with cheap recovery if wrong.
+
+Exclude Luna for unknown-cause or repeatedly failing bugs; new features with lifecycle or interaction state; cross-screen consistency; role-dependent publishing, permissions, uploads, persistence, or synchronization; and requests combining several interacting changes. A mock/demo status does not make these interactions trivial. Use Terra Medium/High for scoped implementation, Sol for ambiguity or difficult diagnosis, and evaluate the Astra gate for broad integration work. When evidence is insufficient to establish every Luna condition, start from Terra Medium and assess upward.
+
+Route the whole requested outcome, not just the easiest first step. Splitting implementation into small steps does not justify assigning the entire task to Luna. Apply any allowance-profile override only AFTER this base assessment, exactly once; never remap the resulting Astra Low a second time.
+
+Before responding, check the current task against these conditions and return the prescribed three-line format once, with a task-specific reason. Do not replace the reason with an execution plan.
+
 ## Base routing rubric
 
 - **GPT-5.6 Luna + Low:** mechanical, narrow, repeatable work with explicit inputs and outputs.
@@ -87,3 +103,5 @@ For an English routing-only request, return exactly these three short lines:
 `Action: <choose the model and reasoning effort in the model picker, then send "go">`
 
 Treat `go` as a confirmation only when the entire user message is exactly `go`, ignoring case and surrounding whitespace. Do not mention speed or label `Standard` as a reasoning effort. For a normal substantive task, route first and do not execute it until the user confirms with the language-appropriate confirmation word.
+
+On confirmation, execute the accepted task without another routing gate. If this profile is the active global profile, do not implicitly use the higher-allowance or cross-platform router.

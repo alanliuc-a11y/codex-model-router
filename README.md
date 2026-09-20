@@ -112,7 +112,13 @@ Model Router recommends the lowest suitable starting point:
 
 It recommends the reasoning effort separately, so you can avoid treating every task as a highest-effort task. Astra is not the new default: the router continues to prefer Luna, Terra, or Sol whenever they are likely to meet the quality bar.
 
-### When Astra is selected
+### When Luna is appropriate
+
+Luna requires one narrow outcome, an explicit solution, no investigation or interacting feature/state changes, and a result that is directly easy to verify. Multi-feature publishing, role rules, uploads, synchronization, playback lifecycle, cross-screen changes, and unknown or repeated bugs are excluded. Each new request is assessed with its conversation context; a series of small edits must not lock later complex work to Luna. Both profiles use these boundaries before any allowance adjustment.
+
+See [routing review cases](docs/routing-cases.md) for examples and the expected differences between profiles.
+
+### Astra criteria
 
 The router recommends Astra when at least two of these signals are present:
 
