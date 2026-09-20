@@ -8,7 +8,28 @@
 
 If you want to save Codex tokens, reduce unnecessary Codex token usage, or make your Codex workflow more efficient, this skill gives you one practical decision point before work begins.
 
+## Choose an installation profile
+
+Choose one profile according to the allowance available in your Codex plan. These labels describe routing strategy; they do not claim official plan names or guaranteed usage limits.
+
+| Your allowance | Install this profile | How Astra routes |
+| --- | --- | --- |
+| US$20 allowance tier | **20 USD profile** | An original Astra Low or Medium route becomes Sol + XHigh. An original Astra High, XHigh, Max, or Ultra route becomes Astra + Low. |
+| More than the US$20 allowance, such as 5× or 20× | **Higher-allowance profile** | Uses the complete routing logic already documented in this repository. |
+
+Install only one profile. Both enable the same managed section in your user-level `AGENTS.md`; running the other profile's enable script later replaces the active global routing rules.
+
 ## Fastest installation: ask Codex to install it
+
+### 20 USD profile
+
+In Codex, copy and send this entire message:
+
+```text
+Use the Skill Installer to install the Codex skill from GitHub repository alanliuc-a11y/codex-model-router, using path profiles/20-usd and the skill name model-router-20. After installation, enable its global routing workflow by running the included script for my operating system. Preserve my existing AGENTS.md instructions and tell me when it is ready.
+```
+
+### Higher-allowance profile
 
 In Codex, copy and send this entire message. Do **not** send only the bare repository URL.
 
@@ -16,11 +37,11 @@ In Codex, copy and send this entire message. Do **not** send only the bare repos
 Use the Skill Installer to install the Codex skill from GitHub repository alanliuc-a11y/codex-model-router, using path . and the skill name model-router. After installation, enable its global routing workflow by running the included script for my operating system. Preserve my existing AGENTS.md instructions and tell me when it is ready.
 ```
 
-This repository's skill is at its root, so the installer needs the path `.`. Once the global workflow is enabled, you can write future tasks normally without adding `$model-router` each time.
+The higher-allowance profile is at the repository root, so the installer needs path `.`. The US$20 profile is in `profiles/20-usd`. Once global routing is enabled, write future tasks normally without adding a skill prefix each time.
 
 ## Step 1 — Install
 
-Clone this repository into your Codex skills directory, using `model-router` as the folder name:
+For the higher-allowance profile, clone this repository into your Codex skills directory using `model-router` as the folder name:
 
 ```text
 <CODEX_HOME>/skills/model-router/
@@ -28,7 +49,7 @@ Clone this repository into your Codex skills directory, using `model-router` as 
 └── agents/openai.yaml
 ```
 
-Restart Codex or start a new task so the skill can be discovered. Then enable global routing once by running one command from the installed `model-router` folder:
+For the US$20 profile, install the `profiles/20-usd` folder as `model-router-20` instead. Restart Codex or start a new task so the selected skill can be discovered. Then enable global routing once by running one command from that selected skill folder:
 
 **Windows PowerShell**
 
@@ -46,9 +67,9 @@ This first-time command is the global setup. It is **not** the same as typing `$
 
 ## Step 2 — Use it
 
-After Step 1 is complete, write every new task normally, just as you usually do. You do **not** need to add `$model-router` at the beginning of each conversation. Codex should recommend the model and reasoning effort before it starts work.
+After Step 1 is complete, write every new task normally, just as you usually do. You do **not** need to add a skill prefix at the beginning of each conversation. Codex should recommend the model and reasoning effort before it starts work.
 
-Use `$model-router` only as an explicit fallback when you want to force a routing-only turn, for example:
+Use `$model-router` or `$model-router-20`, matching your chosen profile, only as an explicit fallback when you want to force a routing-only turn. For example:
 
 ```text
 $model-router Review this database migration plan. Recommend the lowest suitable model and reasoning effort. Do not execute the review.
@@ -147,6 +168,7 @@ Codex token saving · save Codex tokens · reduce Codex token usage · token-eff
 - `agents/openai.yaml` — skill display metadata and automatic-discovery policy.
 - `GLOBAL-ROUTING.md` — the small, managed user-level instruction block for global mode.
 - `scripts/global-routing.ps1` and `scripts/global-routing.sh` — one-time enable, preview, update, and disable commands.
+- `profiles/20-usd/` — a separately installable US$20 profile with its own skill metadata and global-routing scripts.
 - `README.md` and `README.zh-CN.md` — English-first, bilingual documentation.
 - `LICENSE` — the MIT license for reuse and distribution.
 - `CONTRIBUTING.md` — safe, focused ways to report issues and contribute.

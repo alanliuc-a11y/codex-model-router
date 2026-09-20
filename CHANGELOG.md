@@ -4,6 +4,8 @@ All notable user-facing changes are documented here.
 
 ## Unreleased
 
+- Added two installable allowance profiles: a US$20 profile and a higher-allowance profile for 5×, 20×, or comparable plans.
+- Added the US$20 routing override: Astra Low/Medium maps to Sol + XHigh, while Astra High or above maps to Astra + Low.
 - Made GPT-6 Astra reachable whenever a task shows at least two explicit end-to-end complexity signals, instead of requiring evidence that GPT-5.6 Sol would fail first.
 - Clarified the boundary between deep single-domain Sol work and broad multi-system Astra work in the skill, global fallback rules, and bilingual documentation.
 

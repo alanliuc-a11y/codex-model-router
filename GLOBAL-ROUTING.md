@@ -1,6 +1,8 @@
 <!-- model-router:global-start -->
 ## Model Router: global workflow
 
+This is the higher-allowance profile. It keeps the complete routing logic for plans above the US$20 allowance tier, such as 5× or 20× usage. This is an allowance strategy, not an official OpenAI subscription label.
+
 For every new substantive user task, use the installed `model-router` skill before doing any work. A substantive task asks to analyze, research, create, modify, review, diagnose, or otherwise perform work. Meta questions and short confirmations are not substantive tasks.
 
 - If the task does not begin with a valid confirmation token, do not execute it, use tools, browse, edit files, make a plan, or delegate. Return the skill's three-line routing recommendation and wait for confirmation. Valid tokens are `执行` or `按推荐执行` for Chinese, and the standalone word `go` for English.

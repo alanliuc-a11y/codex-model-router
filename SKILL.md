@@ -1,13 +1,17 @@
 ---
 name: model-router
-description: Recommend a cost-efficient Codex model and reasoning effort for a proposed task, including GPT-6 Astra when broad, integrated end-to-end work benefits from its coordination strength. Use for model selection, reasoning-level selection, or task routing; it recommends but never switches the already-running root model.
+description: Recommend a cost-efficient Codex model and reasoning effort for higher-allowance plans, including GPT-6 Astra when broad, integrated end-to-end work benefits from its coordination strength. Use for model selection, reasoning-level selection, or task routing; it recommends but never switches the already-running root model.
 metadata:
   short-description: Recommend an efficient Codex model and effort
 ---
 
-# Model Router / 模型路由器
+# Model Router — Higher-Allowance Profile / 模型路由器（高额度档）
 
 Recommend the lowest-cost setup that is likely to complete the task correctly. Treat model choice and reasoning effort as separate decisions. This skill does not change speed settings.
+
+## Plan profile
+
+This root package is the higher-allowance profile, intended for plans above the US$20 allowance tier, such as interfaces that expose 5× or 20× usage. Apply the routing rubric below unchanged. The label describes an allowance strategy, not an official OpenAI subscription name or entitlement.
 
 ## Hard boundary
 
