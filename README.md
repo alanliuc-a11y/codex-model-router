@@ -4,9 +4,25 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-7c3aed.svg)](LICENSE) [![Codex skill](https://img.shields.io/badge/Codex-skill-22c55e.svg)](SKILL.md) [![Latest release](https://img.shields.io/github/v/release/alanliuc-a11y/codex-model-router?display_name=tag&color=06b6d4)](https://github.com/alanliuc-a11y/codex-model-router/releases)
 
-**Model Router** is a small Codex skill that helps you choose a capable model and reasoning effort *before* you start a task. It routes across GPT-5.6 Luna, Terra, and Sol, and uses GPT-6 Astra when broad, integrated end-to-end work benefits from stronger coordination. Its goal is simple: avoid paying for more model capability or reasoning than the task needs, while keeping enough quality for the job.
+**Model Router** is a small Codex skill that helps you choose a capable model and reasoning effort *before* you start a task. It routes across GPT-6 Luna, Sol, and Astra, and uses Astra when broad, integrated end-to-end work benefits from stronger coordination. Its goal is simple: avoid paying for more model capability or reasoning than the task needs, while keeping enough quality for the job.
 
 If you want to save Codex tokens, reduce unnecessary Codex token usage, or make your Codex workflow more efficient, this skill gives you one practical decision point before work begins.
+
+## GPT-6 update — September 27, 2026
+
+| Task | Default model | Starting effort |
+| --- | --- | --- |
+| One explicit, narrow, easily checked transformation | GPT-6 Luna | Low or Medium |
+| Everyday development, documents, known fixes | GPT-6 Sol | Medium |
+| Coupled features, investigation, repeated bugs | GPT-6 Sol | High |
+| Exceptional single-domain depth | GPT-6 Sol | XHigh |
+| Broad cross-system work meeting the Astra criteria | GPT-6 Astra | Low or Medium; High for costly hidden failures |
+
+The US$20 profile now maps Astra Low/Medium to **GPT-6 Sol XHigh**. Its other rule remains Astra High and above to Astra Low, applied once. This is a usage preference, not a measured equivalence in quality or a subscription quota guarantee.
+
+AutomationBench's official private-set v1.0.6 snapshot lists Sol XHigh at **33.2% / $0.27 per task**, Sol Max at **32.0% / $0.34**, Astra Medium at **34.09% / $1.27**, and Astra Max at **41.4% / $1.73**. These support a cost-sensitive Sol XHigh starting point for complex automation; they do not prove that maximum effort always wins. API test costs are not Codex subscription usage, and the benchmark does not establish code, image or everyday-task quality. Do not mix these results with the public dataset or AutomationBench-AA. [Official leaderboard](https://zapier.com/benchmarks) · [Methodology](https://github.com/zapier/AutomationBench)
+
+The reviewed Codex catalog exposes Low through Max on all three models and Ultra on Sol/Astra. Recommend only choices actually available in the user's picker; API support for None is insufficient.
 
 ## Choose an installation profile
 
@@ -83,15 +99,17 @@ For English requests, the confirmation word is `go`. Send it as a standalone mes
 
 These are authentic Codex captures, presented on a consistent tutorial card. Model Router does not change the active task for you: first select the recommended setting in the picker, then type `go`.
 
+These screenshots are historical GPT-5.6-era captures. They demonstrate the interaction only; use the GPT-6 names below for new recommendations.
+
 ### A light, easy-to-check task
 
-![Step 1: select GPT-5.6 Luna with Light reasoning in the Codex model picker](docs/screenshots/en-01-switch-luna-light.png)
+![Historical step 1: select GPT-5.6 Luna with Light reasoning in the Codex model picker](docs/screenshots/en-01-switch-luna-light.png)
 
 ![Step 2: type go after selecting GPT-5.6 Luna with Light reasoning](docs/screenshots/en-02-confirm-go.png)
 
 ### A routine review and a hard end-to-end workflow
 
-![A launch-plan review routed to GPT-5.6 Sol with High reasoning before confirmation](docs/screenshots/en-03-sol-confirm-go.png)
+![A launch-plan historical review routed to GPT-5.6 Sol with High reasoning before confirmation](docs/screenshots/en-03-sol-confirm-go.png)
 
 ![A hard cross-system payment review routed to GPT-6 Astra with Ultra reasoning; the picker must be changed before confirmation](docs/screenshots/en-04-astra-switch.png)
 
@@ -105,12 +123,11 @@ It is easy to leave a powerful model and a high reasoning setting on for every t
 
 Model Router recommends the lowest suitable starting point:
 
-- **GPT-5.6 Luna** for narrow, repeatable, and easy-to-check work.
-- **GPT-5.6 Terra** for ordinary production work and well-scoped multi-step tasks.
-- **GPT-5.6 Sol** when the work is ambiguous, high-risk, difficult to verify, or needs deeper judgment within one primary domain or a small number of systems.
+- **GPT-6 Luna** for narrow, repeatable, and easy-to-check work.
+- **GPT-6 Sol** for ordinary production work at Medium, coupled features or ambiguity at High, and exceptional depth at XHigh. Use High when the work is ambiguous, high-risk, difficult to verify, or needs deeper judgment within one primary domain or a small number of systems.
 - **GPT-6 Astra** for broad, integrated end-to-end work that combines multiple demanding activities, systems, stages, or deliverables.
 
-It recommends the reasoning effort separately, so you can avoid treating every task as a highest-effort task. Astra is not the new default: the router continues to prefer Luna, Terra, or Sol whenever they are likely to meet the quality bar.
+It recommends the reasoning effort separately, so you can avoid treating every task as a highest-effort task. Astra is not the new default: the router continues to prefer Luna or Sol whenever they are likely to meet the quality bar.
 
 ### When Luna is appropriate
 
@@ -156,17 +173,17 @@ Count a lower-token route as an improvement only when the work still passes your
 
 - The root model for a task is chosen before the task begins. A skill can recommend a choice; it cannot change the root model mid-task.
 - `Standard` is not a reasoning-effort recommendation. Use the exact reasoning label available in your current Codex model picker; `Standard` may describe speed or execution mode instead.
-- In Codex, this router manages only GPT-5.6 Luna, Terra, Sol, and GPT-6 Astra. If you also install a generic cross-platform model router, configure it for explicit-only use in Codex; otherwise its "lowest available model" policy can conflict with this skill's managed catalog.
+- In Codex, this router manages only GPT-6 Luna, Sol, and Astra. If you also install a generic cross-platform model router, configure it for explicit-only use in Codex; otherwise its "lowest available model" policy can conflict with this skill's managed catalog.
 - If the model picker does not contain a managed model, the router should report that mismatch instead of silently replacing it with another option such as GPT-5.4 Mini.
 - OpenAI's API documentation lists GPT-6 Astra reasoning efforts as `Low`, `Medium`, `High`, `XHigh`, and `Max`. If a Codex interface exposes `Ultra`, this router treats it as a Codex multi-agent execution mode rather than a portable API reasoning-effort value.
-- Astra availability can vary by account and rollout. If it is not present in the current model picker, use the strongest suitable available alternative.
+- If a recommended model is missing from your picker, report the mismatch and confirm available choices. GPT-5.6 models, including Terra, are legacy options only when explicitly chosen; do not silently substitute them or invent GPT-6 Terra.
 - The router is decision support, not a guarantee. Use a stronger model or higher effort when an error would be costly or hard to detect.
 
 Official references: [GPT-6 Astra model page](https://developers.openai.com/api/docs/models/gpt-6-astra) and [OpenAI model guidance](https://developers.openai.com/api/docs/guides/latest-model).
 
 ## Search keywords
 
-Codex token saving · save Codex tokens · reduce Codex token usage · token-efficient Codex workflow · improve Codex efficiency · Codex model selection · Codex reasoning effort · GPT-5.6 Luna · GPT-5.6 Terra · GPT-5.6 Sol · GPT-6 Astra · Astra model router
+Codex token saving · save Codex tokens · reduce Codex token usage · token-efficient Codex workflow · improve Codex efficiency · Codex model selection · Codex reasoning effort · GPT-6 Luna · GPT-6 Sol · GPT-6 Astra · Astra model router
 
 ## Repository contents
 

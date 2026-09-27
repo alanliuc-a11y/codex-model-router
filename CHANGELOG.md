@@ -2,7 +2,15 @@
 
 All notable user-facing changes are documented here.
 
-## Unreleased
+## 2026-09-27 — GPT-6 family routing
+
+- Made GPT-6 Luna, Sol and Astra the default catalog; moved GPT-5.6 Terra and other GPT-5.6 models to explicit legacy use.
+- Moved ordinary production work to Sol Medium and coupled/ambiguous work to Sol High, preserving strict Luna eligibility.
+- Updated the US$20 Astra Low/Medium override to GPT-6 Sol XHigh; retained the one-pass Astra High+ to Astra Low policy.
+- Added dated AutomationBench evidence and limits; distinguished Codex effort availability from API options.
+- Updated both installable profiles, global rules, bilingual guides and manual acceptance cases.
+
+## Earlier unreleased changes
 
 - Restricted Luna to explicit, narrow, directly verifiable work; excluded coupled features, lifecycle state, cross-screen changes, and unknown or repeated bugs in both profiles and global fallbacks.
 - Required fresh whole-task assessment and one-pass allowance mapping to prevent repeated Luna recommendations and recursive Astra downgrades.

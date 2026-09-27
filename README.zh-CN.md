@@ -4,9 +4,27 @@
 
 [![许可证：MIT](https://img.shields.io/badge/License-MIT-7c3aed.svg)](LICENSE) [![Codex 技能](https://img.shields.io/badge/Codex-skill-22c55e.svg)](SKILL.md) [![最新版本](https://img.shields.io/github/v/release/alanliuc-a11y/codex-model-router?display_name=tag&color=06b6d4)](https://github.com/alanliuc-a11y/codex-model-router/releases)
 
-**模型路由器**是一个小型 Codex 技能。它会在你开始任务**之前**，从 GPT-5.6 Luna、Terra、Sol 和 GPT-6 Astra 中建议一个足够胜任的模型，并单独推荐推理强度；当任务需要跨多个环节完成端到端整合时，会使用 GPT-6 Astra。目标很直接：在质量够用的前提下，避免为不需要的模型能力或推理消耗付费。
+**模型路由器**是一个小型 Codex 技能。它会在你开始任务**之前**，从 GPT-6 Luna、Sol 和 Astra 中建议一个足够胜任的模型，并单独推荐推理强度；当任务需要跨多个环节完成端到端整合时，会使用 GPT-6 Astra。目标很直接：在质量够用的前提下，避免为不需要的模型能力或推理消耗付费。
 
 如果你想节省令牌、节省 Codex 令牌、降低 Codex 令牌消耗，或提高 Codex 的使用效率，这个技能会在执行前给出一个可操作的选择建议。
+
+## 2026 年 9 月 27 日更新：支持 GPT-6 全系列
+
+| 任务 | 默认模型 | 建议起点 |
+| --- | --- | --- |
+| 明确、单一、容易核对的整理或修改 | GPT-6 Luna | 轻或中 |
+| 日常开发、文档、已知问题修复 | GPT-6 Sol | 中 |
+| 多功能联动、调查原因、反复失败的问题 | GPT-6 Sol | 高 |
+| 单一领域特别困难的问题 | GPT-6 Sol | 极高 |
+| 满足后文条件的跨系统完整任务 | GPT-6 Astra | 轻或中；隐蔽错误代价高时用高 |
+
+20 美金档现在把原本的 Astra 轻或中映射为 **GPT-6 Sol 极高**；原本的 Astra 高及以上仍映射为 Astra 轻，只转换一次。这是额度使用偏好，不代表能力相等或已测得节省多少额度。
+
+AutomationBench 官方私有测试集当前数据显示：Sol 极高为 **33.2%、每任务约 0.27 美元**；Sol 最大为 **32.0%、约 0.34 美元**；Astra 中为 **34.09%、约 1.27 美元**；Astra 最大为 **41.4%、约 1.73 美元**。它支持复杂自动化任务优先评估 Sol 极高，也说明最大推理强度未必最好。这些费用不能换算为 Codex 订阅额度，榜单也不能代表所有编程、图像和日常任务。不同测试集的分数不能混成同一排名。[官方榜单](https://zapier.com/benchmarks) · [评测方法](https://github.com/zapier/AutomationBench)
+
+本机核对到三个模型均有轻至最大档，Sol 和 Astra 另有超强档；实际推荐仍以用户模型选择器为准。GPT-5.6 系列仅保留为用户明确选择的旧版选项，没有已核实的 GPT-6 Terra。
+
+下方截图是旧版本操作记录，部分仍显示 GPT-5.6；仅说明切换和确认步骤，新任务请以上表为准。
 
 ## 先选择安装档位
 
@@ -83,11 +101,11 @@ $model-router 审核这份数据库迁移方案，推荐足够且最节省的模
 
 ### 轻量、容易核验的任务
 
-![轻量任务可从 GPT-5.6 Luna 和轻推理强度开始](docs/screenshots/zh-00-luna-light-example.png)
+![轻量任务可从 GPT-6 Luna 和轻推理强度开始](docs/screenshots/zh-00-luna-light-example.png)
 
 ### 常规审阅：先切换，再确认
 
-![第 1 步：路由器建议 GPT-5.6 Sol 和高推理强度，在模型选择器中按建议设置](docs/screenshots/zh-01-switch-sol-high.png)
+![第 1 步：路由器建议 GPT-6 Sol 和高推理强度，在模型选择器中按建议设置](docs/screenshots/zh-01-switch-sol-high.png)
 
 ![第 2 步：设置完成后输入执行，任务才会继续](docs/screenshots/zh-02-confirm-execute.png)
 
@@ -103,12 +121,11 @@ $model-router 审核这份数据库迁移方案，推荐足够且最节省的模
 
 模型路由器会建议一个尽量低、但仍适合的起点：
 
-- **GPT-5.6 Luna**：范围窄、可重复、结果容易验证的工作。
-- **GPT-5.6 Terra**：日常生产工作和边界清楚的多步骤任务。
-- **GPT-5.6 Sol**：主要集中在一个领域或少量系统内，但歧义大、风险高、难以验证，或需要更深判断的任务。
+- **GPT-6 Luna**：范围窄、可重复、结果容易验证的工作。
+- **GPT-6 Sol**：日常开发和文档任务默认用中；多功能联动、原因不明的问题或需要深入判断时用高；特别困难时评估极高。
 - **GPT-6 Astra**：需要跨多个高强度环节、系统、阶段或交付物完成端到端整合的任务。
 
-它会把“模型”和“推理强度”分开建议，避免所有任务都默认使用最高推理强度。Astra 不会成为新的默认模型；只要 Luna、Terra 或 Sol 足以达到质量要求，路由器仍会优先选择成本更低的模型。
+它会把“模型”和“推理强度”分开建议，避免所有任务都默认使用最高推理强度。Astra 不会成为新的默认模型；只要 Luna 或 Sol 足以达到质量要求，路由器仍会优先选择成本更低的模型。
 
 ### 什么情况下才会推荐 Luna
 
@@ -154,17 +171,17 @@ $model-router 审核这份数据库迁移方案，推荐足够且最节省的模
 
 - 一个任务的根模型会在任务开始前确定。skill 只能建议，不能在任务运行中自动切换根模型。
 - `标准` 不是推理强度建议；它可能是速度或执行模式。
-- 在 Codex 中，本路由器只管理 GPT-5.6 Luna、Terra、Sol 和 GPT-6 Astra。若你同时安装了通用的跨平台模型路由器，应将后者设为仅显式调用；否则它的“当前可用模型中最低够用”策略可能与这里的受管模型目录冲突。
+- 在 Codex 中，本路由器只管理 GPT-6 Luna、Sol 和 Astra。若你同时安装了通用的跨平台模型路由器，应将后者设为仅显式调用；否则它的“当前可用模型中最低够用”策略可能与这里的受管模型目录冲突。
 - 如果模型选择器中没有任何受管模型，路由器应报告这一不一致，而不是静默改用 GPT-5.4 Mini 等其他选项。
-- OpenAI 的接口文档列出的 GPT-6 Astra 推理强度为 `Low`、`Medium`、`High`、`XHigh` 和 `Max`。如果 Codex 界面提供 `Ultra`，本路由器把它视为 Codex 的多智能体执行模式，而不是通用的接口推理强度值。
-- Astra 是否可用取决于账号和发布进度。如果当前模型选择器中没有 Astra，应选择当下可用的最强合适替代模型。
+- OpenAI 的接口文档列出的 GPT-6 Astra 推理强度对应轻、中、高、极高和最大。超强以 Codex 实际提供的选项为准，不作为通用接口推理参数。
+- 如果模型选择器缺少推荐的模型，应说明差异并确认可用选项，不应悄悄替换为旧版模型。
 - 路由器是决策辅助工具，不是质量保证。若错误代价高或很难发现，应主动使用更强模型或更高推理强度。
 
 官方资料：[GPT-6 Astra 模型页面](https://developers.openai.com/api/docs/models/gpt-6-astra)和[OpenAI 模型指南](https://developers.openai.com/api/docs/guides/latest-model)。
 
 ## 搜索关键词
 
-节省 Token · 节省 Codex Token · 降低 Codex Token 消耗 · 提高 Codex 效率 · Codex 模型选择 · Codex 推理强度 · GPT-5.6 Luna · GPT-5.6 Terra · GPT-5.6 Sol · GPT-6 Astra · Astra 模型路由
+节省 Token · 节省 Codex Token · 降低 Codex Token 消耗 · 提高 Codex 效率 · Codex 模型选择 · Codex 推理强度 · GPT-6 Luna · GPT-6 Sol · GPT-6 Astra · Astra 模型路由
 
 ## 仓库内容
 
